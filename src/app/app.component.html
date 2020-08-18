@@ -1,4 +1,33 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div class="signin">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+    <h2 style="color: #fff;">Log In</h2>
+    <br />
+    <input
+      type="email"
+      required
+      name="email"
+      placeholder="Email Address"
+      email
+      ngModel
+      #email="ngModel"
+    />
+    <span *ngIf="email.invalid && email.touched" class="error"
+      >email is not valid</span
+    ><br /><br />
+    <input
+      type="password"
+      required
+      name="password"
+      placeholder="Password"
+      ngModel
+      #password="ngModel"
+      minlength="4"
+      maxlength="10"
+    />
+    <span *ngIf="password.invalid && password.touched" class="error"
+      >Password can not be empty</span
+    >
+    <br /><br /><br />
+    <button type="submit" [disabled]="userForm.invalid">login</button>
+  </form>
+</div>
